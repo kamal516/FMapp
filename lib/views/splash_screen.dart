@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:radioapp/views/channel_screen.dart';
+import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,9 +13,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  VideoPlayerController? _controller;
+  Future<void>? _initializeVideoPlayerFuture;
+
   @override
   void initState() {
     super.initState();
+
+    _controller = VideoPlayerController.asset("assets/s.mp4");
+    _initializeVideoPlayerFuture = _controller!.initialize();
+    _controller!.setLooping(true);
+    _controller!.setVolume(1.0);
+    super.initState();
+    _controller!.play();
     dat();
   }
 
@@ -51,15 +63,21 @@ class _SplashScreenState extends State<SplashScreen> {
                               color: Colors.orangeAccent,
                               shape: BoxShape.circle),
                           child: CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            //  radius: 5,
-                            child: ClipOval(
-                              child: Image.asset("assets/f1.png"),
-                              //  Image.network(
-                              //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmnvg38VWm9qcq_PyXi2upClk8h1vZylV8jQ&usqp=CAU",
+                              backgroundColor: Colors.grey,
+                              //  radius: 5,
+                              child: Center(
+                                child: AspectRatio(
+                                  aspectRatio: _controller!.value.aspectRatio,
+                                  child: VideoPlayer(_controller!),
+                                ),
+                              )
+                              // ClipOval(
+                              //   child: Image.asset("assets/f1.png"),
+                              //   //  Image.network(
+                              //   //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmnvg38VWm9qcq_PyXi2upClk8h1vZylV8jQ&usqp=CAU",
+                              //   // ),
                               // ),
-                            ),
-                          )
+                              )
                           // Image.asset("assest/vakeel.png"),
                           ),
                       Padding(

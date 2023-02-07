@@ -3,7 +3,10 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:radioapp/controllers/channel_controller.dart';
+import 'package:radioapp/views/introduction_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ChannelScreen extends StatefulWidget {
   @override
@@ -19,14 +22,68 @@ class _ChannelScreenState extends State<ChannelScreen> {
         appBar: AppBar(
           title: Text("Channels"),
           actions: [
-            ElevatedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.shopping_cart),
-                label: GetX<ChannelControler>(
-                  builder: (controller) =>
-                      Text(channelControler.count.toString()),
-                ))
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    prefs.setBool('showHome', false);
+
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => IntroductionScreen()));
+                  },
+                  icon: Icon(Icons.logout),
+                ),
+                ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: Icon(Icons.shopping_cart),
+                    label: GetX<ChannelControler>(
+                      builder: (controller) =>
+                          Text(channelControler.count.toString()),
+                    ))
+              ],
+            )
           ],
+        ),
+        drawer: GFDrawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              GFDrawerHeader(
+                currentAccountPicture: GFAvatar(
+                  radius: 80.0,
+                  backgroundImage: NetworkImage(
+                      "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+                ),
+                otherAccountsPictures: <Widget>[
+                  Image(
+                    image: NetworkImage(
+                        "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                  GFAvatar(
+                    child: Text("ab"),
+                  )
+                ],
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('user name'),
+                    Text('user@userid.com'),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text('Item 1'),
+                onTap: null,
+              ),
+              ListTile(
+                title: Text('Item 2'),
+                onTap: null,
+              ),
+            ],
+          ),
         ),
         body: Column(
           children: [
