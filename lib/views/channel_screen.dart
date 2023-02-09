@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:getwidget/getwidget.dart';
+
 import 'package:radioapp/controllers/channel_controller.dart';
 import 'package:radioapp/views/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +15,10 @@ class ChannelScreen extends StatefulWidget {
 }
 
 class _ChannelScreenState extends State<ChannelScreen> {
+  TextEditingController search = new TextEditingController();
   final channelControler = Get.put(ChannelControler());
+  GlobalKey bottomNavigationKey = GlobalKey();
+  int currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

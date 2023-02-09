@@ -1,9 +1,13 @@
 // @dart = 2.9
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radioapp/views/bar.dart';
 import 'package:radioapp/views/channel_screen.dart';
 import 'package:radioapp/views/introduction_screen.dart';
+import 'package:radioapp/views/musicPlay_screen.dart';
 import 'package:radioapp/views/splash_screen.dart';
+import 'package:radioapp/views/test.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -23,7 +27,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: showHome ? SplashScreen() : IntroductionScreen()
+        home: Tester()
+        //MusicPlayScreen()
+        // Example()
+        // Testscreen()
+        //showHome ? SplashScreen() : IntroductionScreen()
         // SplashScreen()
         //ChannelScreen()
         );
