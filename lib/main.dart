@@ -5,6 +5,7 @@ import 'package:radioapp/views/bar.dart';
 import 'package:radioapp/views/channel_screen.dart';
 import 'package:radioapp/views/introduction_screen.dart';
 import 'package:radioapp/views/musicPlay_screen.dart';
+import 'package:radioapp/views/profile.dart';
 import 'package:radioapp/views/splash_screen.dart';
 import 'package:radioapp/views/test.dart';
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Tester()
+        home: profile()
+        //Tester()
         //MusicPlayScreen()
         // Example()
         // Testscreen()

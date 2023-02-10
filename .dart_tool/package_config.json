@@ -134,6 +134,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/development/newodeveloper/flutter%202/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-10.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "get",
       "rootUri": "file:///Users/development/newodeveloper/flutter%202/.pub-cache/hosted/pub.dartlang.org/get-4.6.5",
       "packageUri": "lib/",
@@ -410,7 +416,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2023-02-09T12:50:44.849797Z",
+  "generated": "2023-02-10T05:55:04.129084Z",
   "generator": "pub",
   "generatorVersion": "2.17.6"
 }
