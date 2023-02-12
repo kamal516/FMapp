@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:radioapp/controllers/channelList_controller.dart';
 import 'package:radioapp/models/channel_model.dart';
 
 class ChannelControler extends GetxController {
@@ -27,6 +28,26 @@ class ChannelControler extends GetxController {
     fetchData();
   }
 
+  final _burrito = ChannelList(
+    id: 1,
+    imageUrl: 'assets/a1.jpg',
+    name: 'Burrito',
+  );
+  final _steak = ChannelList(
+    id: 2,
+    imageUrl: 'assets/f2.jpeg',
+    name: 'Steak',
+  );
+  final _pasta = ChannelList(
+    id: 3,
+    imageUrl: 'assets/A6.jpg',
+    name: 'Pasta',
+  );
+  final _ramen = ChannelList(
+    id: 4,
+    imageUrl: 'assets/f1.png',
+    name: 'Ramen',
+  );
   fetchData() async {
     await Future.delayed(Duration(seconds: 1));
 
@@ -36,26 +57,41 @@ class ChannelControler extends GetxController {
           channelName: 'Punjabi',
           channelImage: "assets/f1.png",
           channelPrice: 56,
+          channelNumber: '45.2',
+          channelList: [_ramen],
           favorite: false),
       Channel(
           id: 2,
           channelName: 'Marathi',
           channelImage: "assets/f2.jpeg",
           channelPrice: 45,
+          channelNumber: '23.02',
+          channelList: [_pasta],
           favorite: false),
       Channel(
           id: 3,
           channelName: 'Telgu',
           channelImage: "assets/f3.jpeg",
           channelPrice: 12,
+          channelNumber: '72.9',
+          channelList: [_steak],
           favorite: false),
       Channel(
           id: 4,
           channelName: 'Hindi',
           channelImage: "assets/f4.jpeg",
           channelPrice: 56,
-          favorite: false)
+          channelNumber: '109.7',
+          channelList: [_burrito],
+          favorite: false),
     ];
+    final List<ChannelList> channelList = [
+      _burrito,
+      _steak,
+      _pasta,
+      _ramen,
+    ];
+
     channelData.addAll(serverResponse);
     update();
   }

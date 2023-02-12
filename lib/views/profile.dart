@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:radioapp/controllers/channel_controller.dart';
 
 class profile extends StatefulWidget {
   const profile({Key? key}) : super(key: key);
@@ -14,8 +15,12 @@ class _profileState extends State<profile> {
   double pw = Get.size.width;
   double ph = Get.size.height;
 
+  final channelControler = Get.put(ChannelControler());
+
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Colors.grey,
         body: Column(
@@ -41,12 +46,20 @@ class _profileState extends State<profile> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                          onPressed: () {}, icon: Icon(Icons.arrow_back)),
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          )),
                       Container(
                         child: Row(
                           children: [
                             IconButton(
-                                onPressed: () {}, icon: Icon(Icons.menu)),
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.menu,
+                                  color: Colors.white,
+                                )),
                           ],
                         ),
                       )
@@ -75,23 +88,30 @@ class _profileState extends State<profile> {
                       child: Text(
                         'Himmat Sandhu',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                     Center(
                       child: Text(
                         'Hm_sandhu@1313',
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
-                    Center(
-                      child: Text(
-                        '',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
-                    )
+                    Divider(
+                      color: Colors.grey,
+                    ),
+                    // Center(
+                    //   child: Text(
+                    //     '',
+                    //     style: TextStyle(
+                    //         fontSize: 15, fontWeight: FontWeight.bold),
+                    //   ),
+                    // )
                   ],
                 ),
 
@@ -173,6 +193,7 @@ class _profileState extends State<profile> {
                                           Column(
                                             children: [
                                               Card(
+                                                color: Colors.grey,
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -185,7 +206,13 @@ class _profileState extends State<profile> {
                                                       contentPadding:
                                                           EdgeInsets.fromLTRB(
                                                               15, 10, 25, 0),
-                                                      title: Text('Titulo'),
+                                                      title: Text(
+                                                        'Address',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                                       subtitle: Text(
                                                           'Este es el subtitulo del card. Aqui podemos colocar descripción de este card.'),
                                                       leading: Icon(Icons.home),
@@ -194,6 +221,7 @@ class _profileState extends State<profile> {
                                                 ),
                                               ),
                                               Card(
+                                                color: Colors.grey,
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -206,7 +234,11 @@ class _profileState extends State<profile> {
                                                       contentPadding:
                                                           EdgeInsets.fromLTRB(
                                                               15, 10, 25, 0),
-                                                      title: Text('Email'),
+                                                      title: Text('Email',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
                                                       subtitle: Text(
                                                           'hm@1313gmail.com'),
                                                       leading:
@@ -216,6 +248,7 @@ class _profileState extends State<profile> {
                                                 ),
                                               ),
                                               Card(
+                                                color: Colors.grey,
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -228,8 +261,12 @@ class _profileState extends State<profile> {
                                                       contentPadding:
                                                           EdgeInsets.fromLTRB(
                                                               15, 10, 25, 0),
-                                                      title:
-                                                          Text('Mobile Number'),
+                                                      title: Text(
+                                                          'Mobile Number',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
                                                       subtitle:
                                                           Text('09856514464'),
                                                       leading: Icon(Icons.call),
@@ -239,28 +276,117 @@ class _profileState extends State<profile> {
                                               )
                                             ],
                                           ),
-                                          GridView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: 7,
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return Container(
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.amber,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15)),
-                                                child: Text('kamal'),
-                                              );
-                                            },
-                                            gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 3,
-                                              mainAxisSpacing: 5.0,
-                                              crossAxisSpacing: 5.0,
-                                            ),
-                                          ),
+                                          GetBuilder<ChannelControler>(
+                                              builder: ((controller) {
+                                            return GridView.builder(
+                                              // shrinkWrap: true,
+                                              itemCount: channelControler
+                                                  .channelData.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return Container(
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.grey,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            0.0),
+                                                    child: Column(
+                                                      children: [
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              width:
+                                                                  width * 0.3,
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            5),
+                                                                child: Text(
+                                                                  channelControler
+                                                                      .channelData[
+                                                                          index]
+                                                                      .channelName,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .justify,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        16,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(20),
+                                                              decoration: BoxDecoration(
+                                                                  image: DecorationImage(
+                                                                      image: AssetImage(channelControler
+                                                                          .channelData[
+                                                                              index]
+                                                                          .channelImage),
+                                                                      fit: BoxFit
+                                                                          .fill),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              15),
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          0.38)),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Container(
+                                                            width: width * 0.3,
+                                                            child: Center(
+                                                              child: Text(
+                                                                channelControler
+                                                                    .channelData[
+                                                                        index]
+                                                                    .channelNumber
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              gridDelegate:
+                                                  SliverGridDelegateWithMaxCrossAxisExtent(
+                                                      maxCrossAxisExtent: 200,
+                                                      childAspectRatio: 3 / 2,
+                                                      crossAxisSpacing: 10,
+                                                      mainAxisSpacing: 10),
+                                            );
+                                          }))
                                         ],
                                       )),
                                 ],

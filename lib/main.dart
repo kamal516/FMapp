@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radioapp/views/bar.dart';
 import 'package:radioapp/views/channel_screen.dart';
+import 'package:radioapp/views/homescreem.dart';
 import 'package:radioapp/views/introduction_screen.dart';
 import 'package:radioapp/views/musicPlay_screen.dart';
 import 'package:radioapp/views/profile.dart';
@@ -28,12 +29,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: profile()
+        home: homescreen()
+        //   profile()
         //Tester()
-        //MusicPlayScreen()
+        //  MusicPlayScreen()
         // Example()
         // Testscreen()
-        //showHome ? SplashScreen() : IntroductionScreen()
+        // showHome ? SplashScreen() : IntroductionScreen()
         // SplashScreen()
         //ChannelScreen()
         );
