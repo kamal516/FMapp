@@ -7,6 +7,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:radioapp/views/channel_screen.dart';
 import 'package:radioapp/views/splash_screen.dart';
+import 'package:radioapp/views/test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -158,37 +159,60 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 isLastPage
                     ? Container(
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          stops: [
-                            0.4,
-                            0.9,
-                          ],
-                          colors: [
-                            Colors.red,
-                            Colors.indigo,
-                          ],
-                        )),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                primary: Colors.white,
-                                // backgroundColor: Colors.red,
-                                minimumSize: Size.fromHeight(60)),
-                            onPressed: () async {
-                              final prefs =
-                                  await SharedPreferences.getInstance();
-                              prefs.setBool('showHome', true);
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => ChannelScreen()));
-                            },
-                            child: Text('Get Started',
-                                style: TextStyle(fontSize: 24))),
-                      )
+                            //     gradient: LinearGradient(
+                            //   begin: Alignment.topRight,
+                            //   end: Alignment.bottomLeft,
+                            //   stops: [
+                            //     0.4,
+                            //     0.9,
+                            //   ],
+                            //   colors: [
+                            //     Colors.red,
+                            //     Colors.indigo,
+                            //   ],
+                            // )
+                            ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Center(
+                            child: RaisedButton(
+                              padding: EdgeInsets.all(18),
+                              textColor: Colors.white,
+                              color: Color(0xff595353),
+                              child: Text("Get Started",
+                                  style: TextStyle(fontSize: 24)),
+                              onPressed: () async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setBool('showHome', true);
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => Tester()));
+                              },
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0),
+                              ),
+                              // TextButton(
+                              //     style: TextButton.styleFrom(
+                              //         shape: RoundedRectangleBorder(
+                              //           borderRadius: BorderRadius.circular(0),
+                              //         ),
+                              //         primary: Colors.white,
+                              //         // backgroundColor: Colors.red,
+                              //         minimumSize: Size.fromHeight(60)),
+                              //     onPressed: () async {
+                              //       final prefs =
+                              //           await SharedPreferences.getInstance();
+                              //       prefs.setBool('showHome', true);
+                              //       Navigator.of(context).pushReplacement(
+                              //           MaterialPageRoute(
+                              //               builder: (context) => ChannelScreen()));
+                              //     },
+                              //     child: Text('Get Started',
+                              //         style: TextStyle(fontSize: 24))),
+                            ),
+                          ),
+                        ))
                     : Container(
                         // color: Colors.transparent,
                         padding: EdgeInsets.symmetric(),

@@ -31,22 +31,22 @@ class ChannelControler extends GetxController {
   final _burrito = ChannelList(
     id: 1,
     imageUrl: 'assets/a1.jpg',
-    name: 'Burrito',
+    name: 'The Offiench',
   );
   final _steak = ChannelList(
     id: 2,
     imageUrl: 'assets/f2.jpeg',
-    name: 'Steak',
+    name: 'Panorma',
   );
   final _pasta = ChannelList(
     id: 3,
     imageUrl: 'assets/A6.jpg',
-    name: 'Pasta',
+    name: 'Classic',
   );
   final _ramen = ChannelList(
     id: 4,
     imageUrl: 'assets/f1.png',
-    name: 'Ramen',
+    name: 'Hip-Hop',
   );
   fetchData() async {
     await Future.delayed(Duration(seconds: 1));
@@ -66,7 +66,7 @@ class ChannelControler extends GetxController {
           channelImage: "assets/f2.jpeg",
           channelPrice: 45,
           channelNumber: '23.02',
-          channelList: [_pasta],
+          channelList: [_pasta, _steak, _burrito, _ramen],
           favorite: false),
       Channel(
           id: 3,
@@ -74,7 +74,10 @@ class ChannelControler extends GetxController {
           channelImage: "assets/f3.jpeg",
           channelPrice: 12,
           channelNumber: '72.9',
-          channelList: [_steak],
+          channelList: [
+            _steak,
+            _burrito,
+          ],
           favorite: false),
       Channel(
           id: 4,
@@ -82,7 +85,15 @@ class ChannelControler extends GetxController {
           channelImage: "assets/f4.jpeg",
           channelPrice: 56,
           channelNumber: '109.7',
-          channelList: [_burrito],
+          channelList: [
+            _burrito,
+            _steak,
+            _burrito,
+            _burrito,
+            _steak,
+            _burrito,
+            _steak,
+          ],
           favorite: false),
     ];
     final List<ChannelList> channelList = [

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radioapp/views/bar.dart';
 import 'package:radioapp/views/channel_screen.dart';
+import 'package:radioapp/views/favorite.dart';
+import 'package:radioapp/views/firstbar.dart';
 import 'package:radioapp/views/homescreem.dart';
 import 'package:radioapp/views/introduction_screen.dart';
 import 'package:radioapp/views/musicPlay_screen.dart';
@@ -25,11 +27,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: homescreen()
+        home: first()
+        // fav()
+        //homescreen()
         //   profile()
         //Tester()
         //  MusicPlayScreen()
