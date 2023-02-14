@@ -10,7 +10,7 @@ import 'package:radioapp/views/introduction_screen.dart';
 import 'package:radioapp/views/musicPlay_screen.dart';
 import 'package:radioapp/views/profile.dart';
 import 'package:radioapp/views/splash_screen.dart';
-import 'package:radioapp/views/test.dart';
+import 'package:radioapp/views/login_screen.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,16 +32,17 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: first()
-        // fav()
-        //homescreen()
-        //   profile()
-        //Tester()
-        //  MusicPlayScreen()
-        // Example()
-        // Testscreen()
-        // showHome ? SplashScreen() : IntroductionScreen()
-        // SplashScreen()
+        home:
+            //first()
+            // fav()
+            //homescreen()
+            //   profile()
+            //Tester()
+            //  MusicPlayScreen()
+            // Example()
+            // Testscreen()
+            //  showHome ? SplashScreen() : IntroductionScreen()
+            SplashScreen()
         //ChannelScreen()
         );
   }

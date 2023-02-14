@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:radioapp/views/favorite.dart';
+import 'package:radioapp/views/firstbar.dart';
+import 'package:radioapp/views/homescreem.dart';
+import 'package:radioapp/views/profile.dart';
 
 class Example extends StatefulWidget {
   @override
@@ -8,44 +12,33 @@ class Example extends StatefulWidget {
 
 class _ExampleState extends State<Example> {
   int _selectedIndex = 0;
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-  ];
+
+  List<Widget> widgetList = const [first(), homescreen(), fav(), profile()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 20,
-        title: const Text('GoogleNavBar'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      // backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   elevation: 20,
+      //   title: const Text('GoogleNavBar'),
+      // ),
+      body: Container(
+        decoration: BoxDecoration(color: Colors.white),
+        child: Center(
+          child: widgetList[_selectedIndex],
+        ),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          //    borderRadius: BorderRadius.circular(30),
+          color: Colors.black26,
           boxShadow: [
             BoxShadow(
-              blurRadius: 20,
+              blurRadius: 80,
               color: Colors.black.withOpacity(.1),
             )
           ],
@@ -69,12 +62,12 @@ class _ExampleState extends State<Example> {
                   text: 'Home',
                 ),
                 GButton(
-                  icon: Icons.favorite,
-                  text: 'Likes',
+                  icon: Icons.library_add,
+                  text: 'Search',
                 ),
                 GButton(
-                  icon: Icons.search,
-                  text: 'Search',
+                  icon: Icons.favorite,
+                  text: 'Likes',
                 ),
                 GButton(
                   icon: Icons.person,

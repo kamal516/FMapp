@@ -7,7 +7,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:radioapp/views/channel_screen.dart';
 import 'package:radioapp/views/splash_screen.dart';
-import 'package:radioapp/views/test.dart';
+import 'package:radioapp/views/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -187,7 +187,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                                 prefs.setBool('showHome', true);
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                        builder: (context) => Tester()));
+                                        builder: (context) => LoginScreen()));
                               },
                               shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0),

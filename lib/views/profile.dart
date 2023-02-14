@@ -279,6 +279,7 @@ class _profileState extends State<profile> {
                                           GetBuilder<ChannelControler>(
                                               builder: ((controller) {
                                             return GridView.builder(
+                                              padding: EdgeInsets.only(top: 10),
                                               // shrinkWrap: true,
                                               itemCount: channelControler
                                                   .channelData.length,

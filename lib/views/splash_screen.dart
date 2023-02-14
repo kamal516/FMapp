@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:radioapp/views/bar.dart';
 import 'package:radioapp/views/channel_screen.dart';
-import 'package:radioapp/views/test.dart';
+import 'package:radioapp/views/introduction_screen.dart';
+import 'package:radioapp/views/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -31,8 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   dat() {
-    Timer(Duration(seconds: 3), () {
-      Get.to(Tester());
+    Timer(Duration(seconds: 3), () async {
+      final prefs = await SharedPreferences.getInstance();
+      final showHome = prefs.getBool('showHome') ?? false;
+      Get.to(showHome ? Example() : IntroductionScreen()
+          // LoginScreen()
+          );
     });
   }
 

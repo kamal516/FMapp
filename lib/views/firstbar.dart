@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:radioapp/controllers/channel_controller.dart';
+import 'package:radioapp/views/introduction_screen.dart';
+import 'package:radioapp/views/musicPlay_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class first extends StatefulWidget {
   const first({Key? key}) : super(key: key);
@@ -12,12 +16,14 @@ class first extends StatefulWidget {
 }
 
 class _firstState extends State<first> {
+  final channelControler = Get.put(ChannelControler());
+  var datat;
+
   double pw = Get.size.width;
   double ph = Get.size.height;
-
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    List<int> list = [1, 2, 3, 4, 5];
     return Scaffold(
       body: Stack(
         children: [
@@ -67,7 +73,8 @@ class _firstState extends State<first> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: ph * (0.06), bottom: 10),
+                    padding: EdgeInsets.only(
+                        top: ph * (0.06), bottom: 10, right: 10),
                     child: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.white,
@@ -110,6 +117,11 @@ class _firstState extends State<first> {
                   autoPlay: true,
                   aspectRatio: 2.0,
                   enlargeCenterPage: true,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
                 ),
                 items: imgList
                     .map((item) => Container(
@@ -123,6 +135,174 @@ class _firstState extends State<first> {
                         ))
                     .toList(),
               )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (int i = 0; i < imgList.length; i++)
+                    Container(
+                      height: 13,
+                      width: 13,
+                      margin: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: currentIndex == i ? Colors.blue : Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                offset: Offset(2, 2))
+                          ]),
+                    )
+                ],
+              ),
+              Divider(),
+              Expanded(
+                  flex: 1,
+                  child: GetBuilder<ChannelControler>(
+                    builder: ((controller) {
+                      return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: channelControler.channelData.length,
+                          // shrinkWrap: true,
+                          // physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    datat = channelControler.channelData[index];
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Center(
+                                    child: Column(
+                                      children: <Widget>[
+                                        CircleAvatar(
+                                            backgroundColor: Colors.grey,
+                                            radius: 35,
+                                            child: CircleAvatar(
+                                                backgroundColor: Colors.amber,
+                                                radius: 33,
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                          channelControler
+                                                              .channelData[
+                                                                  index]
+                                                              .channelImage,
+                                                        ),
+                                                        fit: BoxFit.cover,
+                                                      )),
+                                                ))),
+                                        Text(
+                                          channelControler
+                                              .channelData[index].channelType,
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ));
+                          });
+                    }),
+                  )),
+              Expanded(
+                  flex: 2,
+                  child: GetBuilder<ChannelControler>(
+                    builder: ((controller) {
+                      return ListView.builder(
+                          padding: EdgeInsets.only(top: 10),
+                          scrollDirection: Axis.vertical,
+                          itemCount: datat == null
+                              ? channelControler
+                                  .channelData[0].channelList.length
+                              : datat.channelList.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              color: Color(0xff595353),
+                              // Colors.black38,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              margin: EdgeInsets.all(8),
+                              elevation: 10,
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    contentPadding: EdgeInsets.all(8),
+                                    title: Text(
+                                        datat == null
+                                            ? channelControler.channelData[0]
+                                                .channelList[0].name
+                                            : datat.channelList[index].name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white)),
+                                    subtitle: Text('hm@1313gmail.com'),
+                                    leading: CircleAvatar(
+                                        radius: 30,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                image: AssetImage(datat == null
+                                                    ? channelControler
+                                                        .channelData[0]
+                                                        .channelList[0]
+                                                        .imageUrl
+                                                    : datat.channelList[index]
+                                                        .imageUrl),
+                                                fit: BoxFit.cover,
+                                              )),
+                                        )),
+                                    trailing: Wrap(
+                                      spacing: 10, // space between two icons
+                                      children: <Widget>[
+                                        CircleAvatar(
+                                            backgroundColor: Colors.grey,
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  Get.to(MusicPlayScreen());
+                                                },
+                                                icon: Icon(
+                                                  Icons.play_arrow_outlined,
+                                                  color: Colors.white,
+                                                ))),
+                                        CircleAvatar(
+                                            backgroundColor: Colors.grey,
+                                            child: IconButton(
+                                                onPressed: () async {
+                                                  final prefs =
+                                                      await SharedPreferences
+                                                          .getInstance();
+                                                  prefs.setBool(
+                                                      'showHome', false);
+
+                                                  Navigator.of(context)
+                                                      .pushReplacement(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  IntroductionScreen()));
+                                                },
+                                                icon: Icon(
+                                                  Icons.favorite,
+                                                  color: Colors.white,
+                                                ))),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                            // Text(datat == null
+                            //     ? channelControler.channelData[0].channelList[0].name
+                            //     : datat.channelList[index].name);
+                            //channelByCategoryList(datat.channelList);
+                          });
+                    }),
+                  ))
             ],
           )
         ],

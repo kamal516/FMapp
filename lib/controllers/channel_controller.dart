@@ -53,19 +53,22 @@ class ChannelControler extends GetxController {
 
     List<Channel> serverResponse = [
       Channel(
-          id: 1,
-          channelName: 'Punjabi',
-          channelImage: "assets/f1.png",
-          channelPrice: 56,
-          channelNumber: '45.2',
-          channelList: [_ramen],
-          favorite: false),
+        id: 1,
+        channelName: 'Punjabi',
+        channelImage: "assets/f1.png",
+        channelPrice: 56,
+        channelNumber: '45.2',
+        channelList: [_ramen],
+        channelType: 'Trending',
+        favorite: false,
+      ),
       Channel(
           id: 2,
           channelName: 'Marathi',
           channelImage: "assets/f2.jpeg",
           channelPrice: 45,
           channelNumber: '23.02',
+          channelType: 'Hip-Hop',
           channelList: [_pasta, _steak, _burrito, _ramen],
           favorite: false),
       Channel(
@@ -74,6 +77,7 @@ class ChannelControler extends GetxController {
           channelImage: "assets/f3.jpeg",
           channelPrice: 12,
           channelNumber: '72.9',
+          channelType: 'Rock',
           channelList: [
             _steak,
             _burrito,
@@ -85,6 +89,7 @@ class ChannelControler extends GetxController {
           channelImage: "assets/f4.jpeg",
           channelPrice: 56,
           channelNumber: '109.7',
+          channelType: 'Electro',
           channelList: [
             _burrito,
             _steak,
@@ -93,6 +98,37 @@ class ChannelControler extends GetxController {
             _steak,
             _burrito,
             _steak,
+          ],
+          favorite: false),
+      Channel(
+        id: 1,
+        channelName: 'Punjabi',
+        channelImage: "assets/f1.png",
+        channelPrice: 56,
+        channelNumber: '45.2',
+        channelList: [_ramen],
+        channelType: 'Classic',
+        favorite: false,
+      ),
+      Channel(
+          id: 2,
+          channelName: 'Marathi',
+          channelImage: "assets/f2.jpeg",
+          channelPrice: 45,
+          channelNumber: '23.02',
+          channelType: 'Jazz',
+          channelList: [_pasta, _steak, _burrito, _ramen],
+          favorite: false),
+      Channel(
+          id: 3,
+          channelName: 'Telgu',
+          channelImage: "assets/f3.jpeg",
+          channelPrice: 12,
+          channelNumber: '72.9',
+          channelType: 'Rock',
+          channelList: [
+            _steak,
+            _burrito,
           ],
           favorite: false),
     ];

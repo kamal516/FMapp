@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radioapp/controllers/channel_controller.dart';
+import 'package:radioapp/views/musicPlay_screen.dart';
 
 class fav extends StatefulWidget {
   const fav({Key? key}) : super(key: key);
@@ -108,6 +109,7 @@ class _favState extends State<fav> {
               child: GetBuilder<ChannelControler>(
                 builder: ((controller) {
                   return ListView.builder(
+                      padding: EdgeInsets.only(top: 10),
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: 15,
@@ -149,12 +151,29 @@ class _favState extends State<fav> {
                                             fit: BoxFit.cover,
                                           )),
                                     )),
-                                trailing: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.favorite,
-                                      color: Colors.white,
-                                    )),
+                                trailing: Wrap(
+                                  spacing: 10, // space between two icons
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                        backgroundColor: Colors.grey,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              Get.to(MusicPlayScreen());
+                                            },
+                                            icon: Icon(
+                                              Icons.play_arrow_outlined,
+                                              color: Colors.white,
+                                            ))),
+                                    CircleAvatar(
+                                        backgroundColor: Colors.grey,
+                                        child: IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.favorite,
+                                              color: Colors.white,
+                                            ))),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

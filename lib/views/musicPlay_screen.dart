@@ -158,7 +158,9 @@ class _MusicPlayScreenState extends State<MusicPlayScreen>
               child: Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.back();
+                      },
                       iconSize: 30,
                       icon: Icon(
                         Icons.arrow_back,

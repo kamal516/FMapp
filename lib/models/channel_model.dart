@@ -7,6 +7,7 @@ class Channel {
   final String channelName;
   final String channelImage;
   final double channelPrice;
+  final String channelType;
   final String channelNumber;
   final List<ChannelList> channelList;
   bool favorite;
@@ -16,6 +17,7 @@ class Channel {
       required this.channelName,
       required this.channelImage,
       required this.channelPrice,
+      required this.channelType,
       required this.channelNumber,
       required this.channelList,
       required this.favorite});
