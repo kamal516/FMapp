@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:radioapp/views/favorite.dart';
@@ -35,7 +37,7 @@ class _ExampleState extends State<Example> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           //    borderRadius: BorderRadius.circular(30),
-          color: Colors.black26,
+          color: Colors.black87,
           boxShadow: [
             BoxShadow(
               blurRadius: 80,
@@ -55,7 +57,7 @@ class _ExampleState extends State<Example> {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[100]!,
-              color: Colors.black,
+              color: Colors.white,
               tabs: [
                 GButton(
                   icon: Icons.home,

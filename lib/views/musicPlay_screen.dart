@@ -82,6 +82,7 @@ class _MusicPlayScreenState extends State<MusicPlayScreen>
                       },
                       child: CircleAvatar(
                         radius: 115,
+                        backgroundColor: Colors.grey,
                         backgroundImage: NetworkImage(
                             'https://cdn.pixabay.com/photo/2018/01/15/07/52/woman-3083390_1280.jpg'),
                         child: CircleAvatar(

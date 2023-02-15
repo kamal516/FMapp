@@ -1,5 +1,6 @@
 // @dart = 2.9
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:radioapp/views/bar.dart';
 import 'package:radioapp/views/channel_screen.dart';
@@ -18,7 +19,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool('showHome') ?? false;
-  runApp(MyApp(showHome: showHome));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(MyApp(showHome: showHome));
+  });
+  //
 }
 
 class MyApp extends StatelessWidget {
@@ -33,16 +38,17 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home:
+
             //first()
             // fav()
             //homescreen()
             //   profile()
             //Tester()
             //  MusicPlayScreen()
-            // Example()
-            // Testscreen()
-            //  showHome ? SplashScreen() : IntroductionScreen()
-            SplashScreen()
+            Example()
+        // Testscreen()
+        //  showHome ? SplashScreen() : IntroductionScreen()
+        //  SplashScreen()
         //ChannelScreen()
         );
   }

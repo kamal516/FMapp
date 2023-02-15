@@ -109,7 +109,7 @@ class _favState extends State<fav> {
               child: GetBuilder<ChannelControler>(
                 builder: ((controller) {
                   return ListView.builder(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(top: 1),
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: 15,
@@ -119,8 +119,9 @@ class _favState extends State<fav> {
                       //     : channelControler.channelData[0].channelList.length,
                       itemBuilder: (context, index) {
                         return Card(
-                          color: Color(0xff595353),
-                          //Colors.transparent,
+                          color:
+                              //Color(0xff595353),
+                              Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           margin: EdgeInsets.all(8),
@@ -128,50 +129,47 @@ class _favState extends State<fav> {
                           child: Column(
                             children: <Widget>[
                               ListTile(
-                                contentPadding: EdgeInsets.all(8),
+                                contentPadding: EdgeInsets.all(1),
                                 title: Text('The Panorma',
                                     // channelControler
                                     //     .channelData[3].channelList[3].name,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
-                                subtitle: Text('hm@1313gmail.com'),
+                                subtitle: Text('hm@1313gmail.com',
+                                    style: TextStyle(color: Colors.grey)),
                                 leading: CircleAvatar(
-                                    radius: 30,
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: AssetImage('assets/a1.jpg'
-                                                // channelControler
-                                                //   .channelData[3]
-                                                //   .channelList[3]
-                                                //   .imageUrl
-                                                ),
-                                            fit: BoxFit.cover,
-                                          )),
-                                    )),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/a1.jpg'
+                                            // channelControler
+                                            //   .channelData[3]
+                                            //   .channelList[3]
+                                            //   .imageUrl
+                                            ),
+                                        fit: BoxFit.cover,
+                                      )),
+                                )),
                                 trailing: Wrap(
                                   spacing: 10, // space between two icons
                                   children: <Widget>[
-                                    CircleAvatar(
-                                        backgroundColor: Colors.grey,
-                                        child: IconButton(
-                                            onPressed: () {
-                                              Get.to(MusicPlayScreen());
-                                            },
-                                            icon: Icon(
-                                              Icons.play_arrow_outlined,
-                                              color: Colors.white,
-                                            ))),
-                                    CircleAvatar(
-                                        backgroundColor: Colors.grey,
-                                        child: IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.favorite,
-                                              color: Colors.white,
-                                            ))),
+                                    IconButton(
+                                        iconSize: 30,
+                                        onPressed: () {
+                                          Get.to(MusicPlayScreen());
+                                        },
+                                        icon: Icon(
+                                          Icons.play_arrow_outlined,
+                                          color: Colors.white,
+                                        )),
+                                    IconButton(
+                                        onPressed: () async {},
+                                        icon: Icon(
+                                          Icons.favorite,
+                                          color: Colors.white,
+                                        ))
                                   ],
                                 ),
                               ),

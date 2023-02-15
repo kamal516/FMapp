@@ -58,7 +58,7 @@ class ChannelControler extends GetxController {
         channelImage: "assets/f1.png",
         channelPrice: 56,
         channelNumber: '45.2',
-        channelList: [_ramen],
+        channelList: [_ramen, _pasta, _steak, _burrito, _ramen],
         channelType: 'Trending',
         favorite: false,
       ),

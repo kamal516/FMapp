@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -22,9 +24,77 @@ class _firstState extends State<first> {
   double pw = Get.size.width;
   double ph = Get.size.height;
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // assetImage = AssetImage('assets/yourimage.png');
+    // precacheImage(assetImage, context);
+  }
+
+  sideNav() {
+    return Drawer(
+        child: Stack(children: <Widget>[
+      //first child be the blur background
+      BackdropFilter(
+          filter: ImageFilter.blur(
+              sigmaX: 5.0,
+              sigmaY: 5.0), //this is dependent on the import statment above
+          child: Container(
+              decoration: BoxDecoration(color: Colors.grey.withOpacity(0.5)))),
+      ListView(padding: EdgeInsets.zero, children: <Widget>[
+        DrawerHeader(
+            child: Center(
+          child: Column(
+            children: [
+              CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 45,
+                  child: CircleAvatar(
+                      radius: 40,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: AssetImage('assets/a1.jpg'),
+                              fit: BoxFit.cover,
+                            )),
+                      ))),
+            ],
+          ),
+        )
+            // Text('Hello Drawer Title')
+            ),
+        ListTile(
+            leading: Icon(Icons.dashboard, color: Colors.white),
+            title: Text("Dashboard", style: TextStyle(color: Colors.white)),
+            onTap: () {}),
+        ListTile(
+            leading: Icon(Icons.dashboard, color: Colors.white),
+            title: Text("Dashboard", style: TextStyle(color: Colors.white)),
+            onTap: () {}),
+        ListTile(
+            leading: Icon(Icons.dashboard, color: Colors.white),
+            title: Text("Dashboard", style: TextStyle(color: Colors.white)),
+            onTap: () {}),
+        ListTile(
+            leading: Icon(Icons.dashboard, color: Colors.white),
+            title: Text("Dashboard", style: TextStyle(color: Colors.white)),
+            onTap: () {})
+      ])
+    ]));
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Theme(
+          data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
+          child: sideNav()),
       body: Stack(
         children: [
           ShaderMask(
@@ -51,23 +121,36 @@ class _firstState extends State<first> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: ph * (0.06), left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    padding: EdgeInsets.only(top: ph * (0.06)),
+                    child: Row(
                       children: [
-                        Text(
-                          'Hello',
-                          style: TextStyle(
-                              fontSize: 18,
+                        IconButton(
+                            iconSize: 30,
+                            onPressed: () {
+                              _scaffoldKey.currentState!.openDrawer();
+                            },
+                            icon: Icon(
+                              Icons.menu,
                               color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Himmat Sandhu',
-                          style: TextStyle(
-                              fontSize: 22,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                            )),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Hello',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Himmat Sandhu',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -115,7 +198,7 @@ class _firstState extends State<first> {
                   child: CarouselSlider(
                 options: CarouselOptions(
                   autoPlay: true,
-                  aspectRatio: 2.0,
+                  aspectRatio: 2.5,
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
                     setState(() {
@@ -126,11 +209,12 @@ class _firstState extends State<first> {
                 items: imgList
                     .map((item) => Container(
                           decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(item),
+                              image: new DecorationImage(
+                                image: AssetImage('assets/a2.jpg'),
+                                //NetworkImage(item),
                                 fit: BoxFit.cover,
                               ),
-                              color: Colors.red,
+                              color: Colors.grey,
                               borderRadius: BorderRadius.circular(30)),
                         ))
                     .toList(),
@@ -182,7 +266,7 @@ class _firstState extends State<first> {
                                             backgroundColor: Colors.grey,
                                             radius: 35,
                                             child: CircleAvatar(
-                                                backgroundColor: Colors.amber,
+                                                backgroundColor: Colors.grey,
                                                 radius: 33,
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -214,82 +298,112 @@ class _firstState extends State<first> {
                   child: GetBuilder<ChannelControler>(
                     builder: ((controller) {
                       return ListView.builder(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(top: 0),
                           scrollDirection: Axis.vertical,
                           itemCount: datat == null
-                              ? channelControler
-                                  .channelData[0].channelList.length
+                              ? 6
+                              //  channelControler
+                              //     .channelData[0].channelList.length
                               : datat.channelList.length,
                           itemBuilder: (context, index) {
                             return Card(
-                              color: Color(0xff595353),
-                              // Colors.black38,
+                              color:
+                                  //Color(0xff595353),
+                                  Colors.transparent,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
-                              margin: EdgeInsets.all(8),
+                              margin: EdgeInsets.all(2),
                               elevation: 10,
                               child: Column(
                                 children: <Widget>[
                                   ListTile(
-                                    contentPadding: EdgeInsets.all(8),
+                                    contentPadding: EdgeInsets.all(1),
                                     title: Text(
                                         datat == null
-                                            ? channelControler.channelData[0]
-                                                .channelList[0].name
+                                            ? 'Hip-Hop'
+                                            // channelControler.channelData[0]
+                                            //     .channelList[0].name
                                             : datat.channelList[index].name,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white)),
-                                    subtitle: Text('hm@1313gmail.com'),
+                                    subtitle: Text(
+                                      'hm@1313gmail.com',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
                                     leading: CircleAvatar(
-                                        radius: 30,
                                         child: Container(
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                image: AssetImage(datat == null
-                                                    ? channelControler
-                                                        .channelData[0]
-                                                        .channelList[0]
-                                                        .imageUrl
-                                                    : datat.channelList[index]
-                                                        .imageUrl),
-                                                fit: BoxFit.cover,
-                                              )),
-                                        )),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: AssetImage(datat == null
+                                                ? 'assets/a1.jpg'
+                                                // channelControler
+                                                //     .channelData[0]
+                                                //     .channelList[0]
+                                                //     .imageUrl
+                                                : datat.channelList[index]
+                                                    .imageUrl),
+                                            fit: BoxFit.cover,
+                                          )),
+                                    )),
                                     trailing: Wrap(
                                       spacing: 10, // space between two icons
                                       children: <Widget>[
-                                        CircleAvatar(
-                                            backgroundColor: Colors.grey,
-                                            child: IconButton(
-                                                onPressed: () {
-                                                  Get.to(MusicPlayScreen());
-                                                },
-                                                icon: Icon(
-                                                  Icons.play_arrow_outlined,
-                                                  color: Colors.white,
-                                                ))),
-                                        CircleAvatar(
-                                            backgroundColor: Colors.grey,
-                                            child: IconButton(
-                                                onPressed: () async {
-                                                  final prefs =
-                                                      await SharedPreferences
-                                                          .getInstance();
-                                                  prefs.setBool(
-                                                      'showHome', false);
+                                        IconButton(
+                                            iconSize: 30,
+                                            onPressed: () {
+                                              Get.to(MusicPlayScreen());
+                                            },
+                                            icon: Icon(
+                                              Icons.play_arrow_outlined,
+                                              color: Colors.white,
+                                            )),
+                                        IconButton(
+                                            onPressed: () async {
+                                              final prefs =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              prefs.setBool('showHome', false);
+                                              Navigator.of(context).pushReplacement(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          IntroductionScreen()));
+                                            },
+                                            icon: Icon(
+                                              Icons.favorite,
+                                              color: Colors.white,
+                                            ))
+                                        // CircleAvatar(
+                                        //     backgroundColor: Colors.grey,
+                                        //     child: IconButton(
+                                        //         onPressed: () {
+                                        //           Get.to(MusicPlayScreen());
+                                        //         },
+                                        //         icon: Icon(
+                                        //           Icons.play_arrow_outlined,
+                                        //           color: Colors.white,
+                                        //         ))),
+                                        // CircleAvatar(
+                                        //     backgroundColor: Colors.grey,
+                                        //     child: IconButton(
+                                        //         onPressed: () async {
+                                        //           final prefs =
+                                        //               await SharedPreferences
+                                        //                   .getInstance();
+                                        //           prefs.setBool(
+                                        //               'showHome', false);
 
-                                                  Navigator.of(context)
-                                                      .pushReplacement(
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  IntroductionScreen()));
-                                                },
-                                                icon: Icon(
-                                                  Icons.favorite,
-                                                  color: Colors.white,
-                                                ))),
+                                        //           Navigator.of(context)
+                                        //               .pushReplacement(
+                                        //                   MaterialPageRoute(
+                                        //                       builder: (context) =>
+                                        //                           IntroductionScreen()));
+                                        //         },
+                                        //         icon: Icon(
+                                        //           Icons.favorite,
+                                        //           color: Colors.white,
+                                        //         ))),
                                       ],
                                     ),
                                   ),
