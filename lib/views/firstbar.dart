@@ -50,9 +50,9 @@ class _firstState extends State<first> {
             children: [
               CircleAvatar(
                   backgroundColor: Colors.white,
-                  radius: 45,
+                  radius: 48,
                   child: CircleAvatar(
-                      radius: 40,
+                      radius: 45,
                       child: Container(
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -61,6 +61,8 @@ class _firstState extends State<first> {
                               fit: BoxFit.cover,
                             )),
                       ))),
+              Text("Himmat Sandhu", style: TextStyle(color: Colors.white)),
+              Text("hm@1313gmail.com", style: TextStyle(color: Colors.white)),
             ],
           ),
         )
@@ -71,17 +73,32 @@ class _firstState extends State<first> {
             title: Text("Dashboard", style: TextStyle(color: Colors.white)),
             onTap: () {}),
         ListTile(
-            leading: Icon(Icons.dashboard, color: Colors.white),
-            title: Text("Dashboard", style: TextStyle(color: Colors.white)),
+            leading: Icon(Icons.person, color: Colors.white),
+            title: Text("Profile", style: TextStyle(color: Colors.white)),
             onTap: () {}),
         ListTile(
-            leading: Icon(Icons.dashboard, color: Colors.white),
-            title: Text("Dashboard", style: TextStyle(color: Colors.white)),
+            leading: Icon(Icons.home, color: Colors.white),
+            title: Text("Home", style: TextStyle(color: Colors.white)),
+            onTap: () {}),
+        Divider(color: Colors.white),
+        ListTile(
+            leading: Icon(Icons.lock, color: Colors.white),
+            title:
+                Text("Privacy Policy", style: TextStyle(color: Colors.white)),
             onTap: () {}),
         ListTile(
-            leading: Icon(Icons.dashboard, color: Colors.white),
-            title: Text("Dashboard", style: TextStyle(color: Colors.white)),
-            onTap: () {})
+            leading: Icon(Icons.phone, color: Colors.white),
+            title: Text("Contact us", style: TextStyle(color: Colors.white)),
+            onTap: () {}),
+        ListTile(
+            leading: Icon(Icons.exit_to_app, color: Colors.white),
+            title: Text("Sign out", style: TextStyle(color: Colors.white)),
+            onTap: () async {
+              final prefs = await SharedPreferences.getInstance();
+              prefs.setBool('showHome', false);
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => IntroductionScreen()));
+            }),
       ])
     ]));
   }
@@ -92,9 +109,12 @@ class _firstState extends State<first> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: Theme(
-          data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
-          child: sideNav()),
+      drawer: Container(
+        width: pw * (0.7),
+        child: Theme(
+            data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
+            child: sideNav()),
+      ),
       body: Stack(
         children: [
           ShaderMask(
@@ -361,14 +381,14 @@ class _firstState extends State<first> {
                                             )),
                                         IconButton(
                                             onPressed: () async {
-                                              final prefs =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              prefs.setBool('showHome', false);
-                                              Navigator.of(context).pushReplacement(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          IntroductionScreen()));
+                                              // final prefs =
+                                              //     await SharedPreferences
+                                              //         .getInstance();
+                                              // prefs.setBool('showHome', false);
+                                              // Navigator.of(context).pushReplacement(
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) =>
+                                              //             IntroductionScreen()));
                                             },
                                             icon: Icon(
                                               Icons.favorite,

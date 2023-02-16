@@ -161,7 +161,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ],
                                         ),
                                         RawMaterialButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Get.to(Example());
+                                          },
                                           elevation: 2.0,
                                           fillColor: Colors.white,
                                           child: Icon(
